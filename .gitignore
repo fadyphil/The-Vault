@@ -1,0 +1,25 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+vault # (Assuming your compiled binary will be named 'vault')
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Dependency directories (Go modules handles this, but good to ignore vendor if you use it)
+vendor/
+
+# Environment variables (NEVER commit local secrets)
+.env
+.env.local
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
