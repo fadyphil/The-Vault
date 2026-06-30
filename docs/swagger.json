@@ -1,0 +1,154 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "The Vault API",
+    "description": "Centralized, zero-trust Secrets Management System API. Stores and retrieves encrypted secrets securely.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Local Development Server"
+    }
+  ],
+  "paths": {
+    "/v1/secrets": {
+      "post": {
+        "summary": "Securely encrypt and store a new secret",
+        "description": "Accepts a plaintext secret value, encrypts it using AES-GCM, and stores it in the database.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSecretRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Secret successfully encrypted and stored",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateSecretResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input payload"
+          },
+          "500": {
+            "description": "Internal server error during encryption or database write"
+          }
+        }
+      }
+    },
+    "/v1/secrets/{id}": {
+      "get": {
+        "summary": "Retrieve and decrypt a secret",
+        "description": "Fetches the encrypted secret from the repository, decrypts it in RAM, and writes an audit log before returning the plaintext.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the secret",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Secret decrypted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecretResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized access"
+          },
+          "404": {
+            "description": "Secret not found"
+          },
+          "500": {
+            "description": "Decryption failed or database read error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "CreateSecretRequest": {
+        "type": "object",
+        "required": [
+          "Name",
+          "PlaintextValue"
+        ],
+        "properties": {
+          "Name": {
+            "type": "string",
+            "example": "my-database-password"
+          },
+          "PlaintextValue": {
+            "type": "string",
+            "example": "super-secret-password-123"
+          }
+        }
+      },
+      "CreateSecretResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "isub"
+          },
+          "name": {
+            "type": "string",
+            "example": "my-database-password"
+          }
+        }
+      },
+      "SecretResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "isub"
+          },
+          "name": {
+            "type": "string",
+            "example": "my-database-password"
+          },
+          "plaintext": {
+            "type": "string",
+            "example": "super-secret-password-123"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}

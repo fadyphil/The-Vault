@@ -1,0 +1,27 @@
+name: Documentation Check
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  check-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Necessary to analyze git history and staged diffs correctly
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Run Documentation Verification
+        run: |
+          # Since CI doesn't have "staged" files (it checks the entire commit), 
+          # the python script will naturally verify files and link structures.
+          python3 scripts/check-docs.py
