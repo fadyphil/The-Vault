@@ -18,8 +18,8 @@ The core skeleton of the application, focusing on strict data contracts and the 
 
 Replacing the Mock Service with real, memory-safe mathematics to secure data at rest.
 
-- [ ] **Batch 1:** Build standalone AES-GCM encryption/decryption utilities (`internal/crypto`).
-- [ ] **Batch 2:** Implement the real `SecretService` to orchestrate UUID generation and crypto sealing.
+- [x] **Batch 1:** Build standalone AES-GCM encryption/decryption utilities (`internal/crypto`).
+- [x] **Batch 2:** Implement the real `SecretService` to orchestrate UUID generation and crypto sealing.
 - [ ] **Batch 3:** Implement Environment Variable loading (`.env`) to securely inject the Master Key.
 
 ## 📅 Phase 4: The Data Access Layer (UPCOMING)
