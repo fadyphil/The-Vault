@@ -20,7 +20,7 @@ Replacing the Mock Service with real, memory-safe mathematics to secure data at 
 
 - [x] **Batch 1:** Build standalone AES-GCM encryption/decryption utilities (`internal/crypto`).
 - [x] **Batch 2:** Implement the real `SecretService` to orchestrate UUID generation and crypto sealing.
-- [ ] **Batch 3:** Implement Environment Variable loading (`.env`) to securely inject the Master Key.
+- [x] **Batch 3:** Implement Environment Variable loading (`.env`) to securely inject the Master Key.
 
 ## 📅 Phase 4: The Data Access Layer (UPCOMING)
 
