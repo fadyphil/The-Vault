@@ -14,7 +14,7 @@ The core skeleton of the application, focusing on strict data contracts and the 
 - [x] **HTTP Transport:** `SecretHandler` with streaming JSON decoding, guard clauses, and proper HTTP semantic status codes.
 - [x] **Composition Root:** `main.go` wiring with `net/http` router and Mock Service stubbing for end-to-end testing.
 
-## 🚧 Phase 3: The Cryptographic Engine (IN PROGRESS)
+## 🏆 Phase 3: The Cryptographic Engine (COMPLETED)
 
 Replacing the Mock Service with real, memory-safe mathematics to secure data at rest.
 
@@ -22,7 +22,7 @@ Replacing the Mock Service with real, memory-safe mathematics to secure data at 
 - [x] **Batch 2:** Implement the real `SecretService` to orchestrate UUID generation and crypto sealing.
 - [x] **Batch 3:** Implement Environment Variable loading (`.env`) to securely inject the Master Key.
 
-## 📅 Phase 4: The Data Access Layer (UPCOMING)
+## 🚧 Phase 4: The Data Access Layer (FUTURE)
 
 Connecting the Brain to the Muscle. Introduction of PostgreSQL and ACID transactions.
 
@@ -31,7 +31,7 @@ Connecting the Brain to the Muscle. Introduction of PostgreSQL and ACID transact
 - [ ] **ACID Compliance:** Wrap Secret retrieval in strict database transactions (Read + Audit Log commit/rollback).
 - [ ] **Dependency Wiring:** Inject the Postgres Repository into the Real Service.
 
-## 🔮 Phase 5: Production Readiness & Security (FUTURE)
+## 📅 Phase 5: Production Readiness & Security (UPCOMING)
 
 Hardening the API for real-world, hostile internet traffic.
 
